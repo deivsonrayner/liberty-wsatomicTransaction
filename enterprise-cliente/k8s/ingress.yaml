@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: enterprise-client-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: enterprise-client.local 
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: enterprise-client-svc
+          servicePort: 9080

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://sample.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="MockServiceWS" targetNamespace="http://sample.com">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://sample.com" elementFormDefault="unqualified" targetNamespace="http://sample.com" version="1.0">
+<xs:element name="meanOperation" type="tns:meanOperation"></xs:element>
+<xs:element name="meanOperationResponse" type="tns:meanOperationResponse"></xs:element>
+<xs:element name="sd" type="tns:sd"></xs:element>
+<xs:element name="sdResponse" type="tns:sdResponse"></xs:element>
+<xs:complexType name="meanOperation">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="vector" type="xs:double"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="meanOperationResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:double"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sd">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="vector" type="xs:double"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sdResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:double"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="meanOperation">
+    <wsdl:part element="tns:meanOperation" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sd">
+    <wsdl:part element="tns:sd" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sdResponse">
+    <wsdl:part element="tns:sdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="meanOperationResponse">
+    <wsdl:part element="tns:meanOperationResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MockServiceWS">
+    <wsdl:operation name="meanOperation">
+      <wsdl:input message="tns:meanOperation" name="meanOperation">
+    </wsdl:input>
+      <wsdl:output message="tns:meanOperationResponse" name="meanOperationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sd">
+      <wsdl:input message="tns:sd" name="sd">
+    </wsdl:input>
+      <wsdl:output message="tns:sdResponse" name="sdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MockServiceWSSoapBinding" type="tns:MockServiceWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="meanOperation">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="meanOperation">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="meanOperationResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sd">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="sd">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="sdResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MockServiceWS">
+    <wsdl:port binding="tns:MockServiceWSSoapBinding" name="MockServiceWSPort">
+      <!-- soap:address location="http://localhost:9080/mock-ejb-0.0.1-SNAPSHOT/MockServiceWS"></soap:address -->
+      <soap:address location="http://enterprise-server-svc:9080/mock-ejb-0.0.1-SNAPSHOT/MockServiceWS"></soap:address>   
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
