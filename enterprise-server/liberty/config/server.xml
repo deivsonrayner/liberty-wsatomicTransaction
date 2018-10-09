@@ -30,21 +30,22 @@
   <iiopEndpoint id="defaultIiopEndpoint" host="${env.POD_IP}" iiopPort="2809">
   	<iiopsOptions iiopsPort="9402" sslRef="defaultSSLConfig" />
   </iiopEndpoint>
-	
-  
+	 
   <quickStartSecurity userName="admin" userPassword="admin" />
   
-  <wsAtomicTransaction SSLEnabled="false" SSLRef="defaultSSLConfig" externalURLPrefix="http://${env.POD_IP}:9080" clientAuth="false"/> 
-  
-  
+  <wsAtomicTransaction SSLEnabled="false" SSLRef="defaultSSLConfig" 
+  			externalURLPrefix="http://${env.POD_IP}:9080" clientAuth="false"/> 
   
   <application location="mock-enterprise.ear">
   </application>
   
-    <logging  traceSpecification="Transaction=all:com.ibm.ws.transaction.services.WebAppTransactionCollaboratorImpl=all:org.apache.cxf.*=all:com.ibm.ws.jaxws.*=all"
+    <logging  traceSpecification="Transaction=all:
+    		  com.ibm.ws.transaction.services.WebAppTransactionCollaboratorImpl=all:
+              org.apache.cxf.*=all:com.ibm.ws.jaxws.*=all"
 		traceFileName="trace.log"
 		maxFileSize="100"
 		maxFiles="10"
 		traceFormat="BASIC" />
-
 </server>
+
+
